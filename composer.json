@@ -1,6 +1,7 @@
 {
   "name": "laravel/nova-log-viewer",
-  "description": "A Laravel Nova tool for viewing logs.",
+  "version": "0.1.0",
+  "description": "A Laravel Nova tool for viewing your application logs.",
   "keywords": [
     "laravel",
     "nova"
