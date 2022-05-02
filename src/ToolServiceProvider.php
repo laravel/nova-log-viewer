@@ -19,7 +19,6 @@ class ToolServiceProvider extends ServiceProvider
     {
         $this->app->booted(function () {
             $this->routes();
-            $this->loadJsonTranslationsFrom('../resources/lang/en.json');
         });
 
         Nova::serving(function (ServingNova $event) {
