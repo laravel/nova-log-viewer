@@ -24,7 +24,7 @@ class LogViewerController extends Controller
             'logs' => collect($logs)->map(function (SplFileInfo $log) {
                 return [
                     'label' => $log->getRelativePathname(),
-                    'value' => $log->getPathname(),
+                    'value' => $log->getRelativePathname(),
                 ];
             }),
         ]);
@@ -39,7 +39,7 @@ class LogViewerController extends Controller
     public function fetch(NovaRequest $request)
     {
         $request->validate(['lastLine' => ['numeric']]);
-        $logFile = new File($request->log);
+        $logFile = new File(storage_path('logs/' . $request->log));
         $lines = $logFile->contentAfterLine($request->lastLine);
         $lastLine = $request->lastLine + substr_count($lines, PHP_EOL);
 
