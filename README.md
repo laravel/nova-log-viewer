@@ -1,4 +1,4 @@
-![Nova Log Viewer](https://banners.beyondco.de/Nova%20Log%20Viewer.png?theme=light&packageManager=composer+require&packageName=vendor%2Fmy-awesome-package&pattern=cage&style=style_1&description=A+Laravel+Nova+tool+for+viewing+your+application+logs&md=1&showWatermark=0&fontSize=100px&images=login)
+![Nova Log Viewer](https://banners.beyondco.de/Nova%20Log%20Viewer.png?theme=light&packageManager=composer+require&packageName=laravel%2Fnova-log-viewer&pattern=cage&style=style_1&description=A+Laravel+Nova+tool+for+viewing+your+application+logs&md=1&showWatermark=0&fontSize=100px&images=login)
 
 This package makes it easy to view your Laravel application logs inside of Nova. It even supports polling.
 
