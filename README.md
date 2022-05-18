@@ -6,6 +6,20 @@ This package makes it easy to view your Laravel application logs inside of Nova.
 
 ## Installation
 
-```
+You can install the Nova tool via Composer:
+
+```shell
 composer require laravel/nova-log-viewer
+```
+
+Next, you must register the tool with Nova. This is typically done in the `tools` method of your application's `NovaServiceProvider`.
+
+```php
+public function tools()
+{
+    return [
+        // ...
+        \Laravel\Nova\LogViewer\LogViewer::make(),
+    ];
+}
 ```
