@@ -26,6 +26,7 @@ class LogViewerController extends Controller
                     'value' => $log->getRelativePathname(),
                 ];
             })
+            ->sortByDesc('label')
             ->values();
 
         return Inertia::render('NovaLogViewer', [
