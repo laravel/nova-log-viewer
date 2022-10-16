@@ -18,15 +18,19 @@ class LogViewerController extends Controller
      */
     public function __invoke()
     {
-        $logs = FileFacade::allFiles(storage_path('logs'));
-
-        return Inertia::render('NovaLogViewer', [
-            'logs' => collect($logs)->map(function (SplFileInfo $log) {
+        $logs = collect(FileFacade::allFiles(storage_path('logs')))
+            ->filter(fn (SplFileInfo $log) => $log->getExtension() === 'log')
+            ->map(function (SplFileInfo $log) {
                 return [
                     'label' => $log->getRelativePathname(),
                     'value' => $log->getRelativePathname(),
                 ];
-            }),
+            })
+            ->sortByDesc('label')
+            ->values();
+
+        return Inertia::render('NovaLogViewer', [
+            'logs' => $logs,
         ]);
     }
 
