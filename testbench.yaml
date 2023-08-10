@@ -1,0 +1,14 @@
+providers:
+  - Laravel\Nova\LogViewer\ToolServiceProvider
+  - Workbench\App\Providers\NovaServiceProvider
+
+env:
+  - SEND_QUERIES_TO_RAY=false
+
+migrations: true
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: '/nova'
