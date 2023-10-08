@@ -42,8 +42,16 @@ class LogViewerController extends Controller
      */
     public function fetch(NovaRequest $request)
     {
+        $file = $request->log;
+
+        // Remove any potential directory traversal sequences (e.g., ../ or ..\) from the input
+        $file = str_replace(array('../', '..\\'), '', $file);
+
+        // Remove any characters that are not allowed in a file path
+        $file = preg_replace('/[^\w\.-]/', '', $file);
+
         $request->validate(['lastLine' => ['numeric']]);
-        $logFile = new File(storage_path('logs/' . $request->log));
+        $logFile = new File(storage_path('logs/' . $file));
         $lines = $logFile->contentAfterLine($request->lastLine);
         $lastLine = $request->lastLine + substr_count($lines, PHP_EOL);
 
