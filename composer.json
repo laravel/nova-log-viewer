@@ -37,8 +37,8 @@
   },
   "repositories": [
     {
-      "type": "composer",
-      "url": "https://nova.laravel.com"
+      "type": "vcs",
+      "url": "https://github.com/memhgh/nova-log-viewer"
     }
   ],
   "scripts": {
