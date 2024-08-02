@@ -42,16 +42,16 @@
     }
   ],
   "scripts": {
-    "post-autoload-dump": "@composer run prepare",
+    "post-autoload-dump": "@prepare",
     "prepare": "@php vendor/bin/testbench package:discover --ansi",
     "build": [
-      "@composer run prepare",
+      "@prepare",
       "@php vendor/bin/testbench vendor:publish --tag=laravel-assets --ansi --force",
       "@php vendor/bin/testbench workbench:create-sqlite-db",
       "@php vendor/bin/testbench migrate:refresh"
     ],
-    "start": [
-        "@composer run build",
+    "serve": [
+        "@build",
         "@php vendor/bin/testbench serve"
     ]
   },
