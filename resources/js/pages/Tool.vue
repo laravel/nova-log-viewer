@@ -9,10 +9,10 @@
         <div class="flex items-center">
           <SelectControl
             v-if="logs.length > 1"
-            v-model:selected="selectedLogFile.value"
-            size="sm"
+            :selected="selectedLogFile.value"
+            @update:selected="handleLogChange"
             :options="logs"
-            @change="handleLogChange"
+            size="sm"
           >
             <option value="" selected disabled>
               {{ __('Select a log file...') }}
@@ -28,7 +28,7 @@
         >
           <ToolbarButton
             @click="replaceContent"
-            type="refresh"
+            icon-name="refresh"
             v-tooltip="__('Refresh')"
           />
 
@@ -38,20 +38,20 @@
               'text-green-500': playing,
               'text-gray-500': !playing,
             }"
-            type="clock"
+            icon-name="clock"
             class="w-8 h-8"
             v-tooltip="playing ? __('Stop polling') : __('Start polling')"
           />
 
           <ToolbarButton
             @click="scrollToTop"
-            type="arrow-up"
+            icon-name="arrow-up"
             v-tooltip="__('Scroll to top')"
           />
 
           <ToolbarButton
             @click="scrollToBottom"
-            type="arrow-down"
+            icon-name="arrow-down"
             v-tooltip="__('Scroll to bottom')"
           />
         </div>
