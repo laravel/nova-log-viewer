@@ -8,7 +8,7 @@ seeders:
   - Workbench\Database\Seeders\DatabaseSeeder
 
 workbench:
-  start: /nova
+  start: /nova/logs
   user: nova@laravel.com
   build:
     - package:discover
