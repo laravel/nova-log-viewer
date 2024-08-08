@@ -71,15 +71,7 @@
 <script>
 import CodeMirror from 'codemirror'
 import ToolbarButton from '../components/ToolbarButton.vue'
-import inflector from 'inflector-js'
-import isString from 'lodash/isString'
-
-function singularOrPlural(value, suffix) {
-  if (isString(suffix) && suffix.match(/^(.*)[A-Za-zÀ-ÖØ-öø-ÿ]$/) == null)
-    return suffix
-  if (value > 1 || value == 0) return inflector.pluralize(suffix)
-  return inflector.singularize(suffix)
-}
+import { singularOrPlural } from 'laravel-nova-util'
 
 export default {
   codemirror: null,
