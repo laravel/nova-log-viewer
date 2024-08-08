@@ -16,7 +16,7 @@ class LogViewer extends Tool
      */
     public function boot()
     {
-        Nova::script('nova-log-viewer', __DIR__.'/../dist/js/tool.js');
+        Nova::script('nova-log-viewer', __DIR__.'/../dist/tool.js');
     }
 
     /**
