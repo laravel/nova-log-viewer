@@ -1,7 +1,7 @@
 let mix = require('laravel-mix')
-let nova = require('laravel-nova-devtool')
+let NovaExtension = require('laravel-nova-devtool')
 
-mix.extend('nova', new nova)
+mix.extend('nova', new NovaExtension)
 
 mix
   .setPublicPath('dist')
