@@ -1,9 +1,6 @@
 providers:
-  - Laravel\Nova\LogViewer\ToolServiceProvider
+  - Laravel\Nova\NovaCoreServiceProvider
   - Workbench\App\Providers\NovaServiceProvider
-
-env:
-  - SEND_QUERIES_TO_RAY=false
 
 migrations: true
 
@@ -11,4 +8,21 @@ seeders:
   - Workbench\Database\Seeders\DatabaseSeeder
 
 workbench:
-  start: '/nova'
+  start: /nova/logs
+  user: nova@laravel.com
+  build:
+    - package:discover
+    - asset-publish
+    - create-sqlite-db
+    - db:wipe
+    - migrate:refresh
+  assets:
+    - nova-assets
+  sync:
+    - from: dist
+      to: public/vendor/nova-pennant-tool
+
+purge:
+  directories:
+    - lang/*
+    - public/vendor/*

@@ -12,10 +12,8 @@ class ToolServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->app->booted(function () {
             $this->routes();
@@ -23,16 +21,16 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::translations([
-                "Logs" => "Logs",
-                "Log Viewer" => "Log Viewer",
-                "Select a log file..." => "Select a log file...",
-                "Refresh" => "Refresh",
-                "Start polling" => "Start polling",
-                "Stop polling" => "Stop polling",
-                "Scroll to top" => "Scroll to top",
-                "Scroll to bottom" => "Scroll to bottom",
-                ":number lines" => ":number lines",
-                ":number line" => ":number line"
+                'Logs' => 'Logs',
+                'Log Viewer' => 'Log Viewer',
+                'Select a log file...' => 'Select a log file...',
+                'Refresh' => 'Refresh',
+                'Start polling' => 'Start polling',
+                'Stop polling' => 'Stop polling',
+                'Scroll to top' => 'Scroll to top',
+                'Scroll to bottom' => 'Scroll to bottom',
+                ':number lines' => ':number lines',
+                ':number line' => ':number line',
             ]);
         });
     }
@@ -49,11 +47,11 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Nova::router(['nova', Authorize::class], 'logs')
-            ->group(__DIR__ . '/../routes/inertia.php');
+            ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
             ->prefix('nova-vendor/logs')
-            ->group(__DIR__ . '/../routes/api.php');
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**

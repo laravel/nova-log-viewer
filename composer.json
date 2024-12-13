@@ -1,60 +1,61 @@
 {
-  "name": "laravel/nova-log-viewer",
-  "version": "0.1.4",
-  "description": "A Laravel Nova tool for viewing your application logs.",
-  "keywords": [
-    "laravel",
-    "nova"
-  ],
-  "license": "MIT",
-  "require": {
-    "php": "^7.3|^8.0",
-    "laravel/nova": "^4.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "^6.29.2|^7.26.2|^8.6.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "Laravel\\Nova\\LogViewer\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Workbench\\App\\": "workbench/app/",
-      "Workbench\\Database\\": "workbench/database/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Laravel\\Nova\\LogViewer\\ToolServiceProvider"
-      ]
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://nova.laravel.com"
-    }
-  ],
-  "scripts": {
-    "post-autoload-dump": "@prepare",
-    "prepare": "@php vendor/bin/testbench package:discover --ansi",
-    "build": [
-      "@prepare",
-      "@php vendor/bin/testbench vendor:publish --tag=laravel-assets --ansi --force",
-      "@php vendor/bin/testbench workbench:create-sqlite-db",
-      "@php vendor/bin/testbench migrate:refresh"
+    "name": "laravel/nova-log-viewer",
+    "description": "A Laravel Nova tool for viewing your application logs.",
+    "keywords": [
+        "laravel",
+        "nova"
     ],
-    "serve": [
-        "@build",
-        "@php vendor/bin/testbench serve"
-    ]
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "laravel/nova": "^5.0"
+    },
+    "require-dev": {
+        "laravel/nova-devtool": "^1.0",
+        "laravel/pint": "^1.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Nova\\LogViewer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravel\\Nova\\LogViewer\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "repositories": [
+        { "type": "composer", "url": "https://nova.laravel.com" }
+    ],
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

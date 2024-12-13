@@ -38,7 +38,6 @@ class LogViewerController extends Controller
     /**
      * Fetch the latest content for a log.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function fetch(NovaRequest $request)

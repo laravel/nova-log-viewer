@@ -3,8 +3,9 @@
 namespace Workbench\App\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Nova;
+use Laravel\Nova\DevTool\DevTool as Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Orchestra\Workbench\Workbench;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -16,8 +17,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
-
-        Nova::initialPath('/logs');
     }
 
     /**
@@ -54,7 +53,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function dashboards()
     {
-        return [];
+        return [
+            new \Laravel\Nova\Dashboards\Main,
+        ];
     }
 
     /**
@@ -65,7 +66,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            \Laravel\Nova\LogViewer\LogViewer::make(),
+            new \Laravel\Nova\LogViewer\LogViewer,
         ];
     }
 
@@ -76,9 +77,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function resources()
     {
-        Nova::resources([
-            \Workbench\App\Nova\User::class,
-        ]);
+        Nova::resourcesIn(Workbench::path('app/Nova'));
     }
 
     /**
