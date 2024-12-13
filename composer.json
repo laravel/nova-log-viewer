@@ -37,14 +37,7 @@
         "sort-packages": true
     },
     "repositories": [
-        {
-            "type": "artifact",
-            "url": "artifacts"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/laravel/nova-devtool"
-        }
+        { "type": "composer", "url": "https://nova.laravel.com" }
     ],
     "scripts": {
         "post-autoload-dump": [

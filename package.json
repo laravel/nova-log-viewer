@@ -12,8 +12,6 @@
     "laravel-nova-devtool": "file:vendor/laravel/nova-devtool"
   },
   "dependencies": {
-    "codemirror": "^5.65.3",
-    "inflector-js": "^1.0.1",
-    "lodash": "^4.17.21"
+    "codemirror": "^5.65.3"
   }
 }
