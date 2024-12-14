@@ -47,6 +47,10 @@
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#c4b5fd,#93c5fd\" \"npm run watch\" \"composer serve\" --names=assets,serve"
+        ],
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "@build",
