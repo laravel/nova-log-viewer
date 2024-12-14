@@ -18,8 +18,11 @@
               {{ __('Select a log file...') }}
             </option>
           </SelectControl>
-          <p v-else class="font-bold truncate">
+          <p v-else-if="logs.length == 1" class="font-bold truncate">
             {{ selectedLogFile.value }}
+          </p>
+          <p v-else>
+            &mdash;
           </p>
         </div>
 
@@ -72,6 +75,7 @@
 import CodeMirror from 'codemirror'
 import ToolbarButton from '../components/ToolbarButton.vue'
 import { singularOrPlural } from 'laravel-nova-util'
+import isNil from 'lodash/isNil'
 
 export default {
   codemirror: null,
@@ -158,6 +162,10 @@ export default {
     },
 
     fetchContent() {
+      if (isNil(this.selectedLogFile)) {
+        return
+      }
+
       this.requestContent().then(
         ({ data: { content, lastLine, numberOfLines } }) => {
           this.lastLine = lastLine
@@ -173,6 +181,11 @@ export default {
 
     replaceContent() {
       this.lastLine = 0
+
+      if (isNil(this.selectedLogFile)) {
+        return
+      }
+
       this.requestContent().then(
         ({ data: { content, lastLine, numberOfLines } }) => {
           this.lastLine = lastLine
