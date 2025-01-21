@@ -9,8 +9,8 @@
         <div class="flex items-center">
           <SelectControl
             v-if="logs.length > 1"
-            :selected="selectedLogFile.value"
-            @update:selected="handleLogChange"
+            v-model="selectedLogFile"
+            @selected="handleLogChange"
             :options="logs"
             size="sm"
           >
@@ -19,7 +19,7 @@
             </option>
           </SelectControl>
           <p v-else-if="logs.length == 1" class="font-bold truncate">
-            {{ selectedLogFile.value }}
+            {{ selectedLogFile }}
           </p>
           <p v-else>
             &mdash;
@@ -96,7 +96,7 @@ export default {
     content: null,
     lastLine: 0,
     interval: null,
-    selectedLogFile: '',
+    selectedLogFile: null,
     numberOfLines: 0,
     scrolledToBottom: false,
   }),
@@ -130,7 +130,7 @@ export default {
     },
 
     selectFirstLog() {
-      this.selectedLogFile = this.logs[0]
+      this.selectedLogFile = this.logs[0].value
     },
 
     updateScrollPosition() {
@@ -144,11 +144,9 @@ export default {
       }
     },
 
-    handleLogChange(val) {
+    handleLogChange(option) {
       const wasPlaying = this.playing
       this.playing = false
-      const options = this.logs.filter(l => l.value == val)
-      this.selectedLogFile = options[0]
       this.replaceContent()
       if (wasPlaying) {
         this.playing = true
@@ -157,7 +155,7 @@ export default {
 
     requestContent() {
       return Nova.request().get('/nova-vendor/logs', {
-        params: { log: this.selectedLogFile.value, lastLine: this.lastLine },
+        params: { log: this.selectedLogFile, lastLine: this.lastLine },
       })
     },
 
