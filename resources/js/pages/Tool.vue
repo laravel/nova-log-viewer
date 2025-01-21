@@ -147,7 +147,6 @@ export default {
     handleLogChange(option) {
       const wasPlaying = this.playing
       this.playing = false
-      const options = this.logs.filter(l => l.value == option.value)
       this.replaceContent()
       if (wasPlaying) {
         this.playing = true
