@@ -75,7 +75,7 @@
 import CodeMirror from 'codemirror'
 import ToolbarButton from '../components/ToolbarButton.vue'
 import { singularOrPlural } from 'laravel-nova-util'
-import isNil from 'lodash/isNil'
+import { isNil } from 'es-toolkit/compat'
 
 export default {
   codemirror: null,
