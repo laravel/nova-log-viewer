@@ -12,6 +12,6 @@
     "laravel-nova-devtool": "file:vendor/laravel/nova-devtool"
   },
   "dependencies": {
-    "codemirror": "^5.65.3"
+    "codemirror": "^5.65.19"
   }
 }
