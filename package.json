@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "nova-log-viewer",
   "scripts": {
     "dev": "npm run development",
     "development": "mix",
