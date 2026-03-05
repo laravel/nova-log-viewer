@@ -2,7 +2,6 @@
 
 namespace Laravel\Nova\LogViewer\Http\Middleware;
 
-use Laravel\Nova\Exceptions\AuthenticationException as NovaAuthenticationException;
 use Laravel\Nova\LogViewer\LogViewer;
 use Laravel\Nova\Nova;
 
@@ -17,10 +16,6 @@ class Authorize
      */
     public function handle($request, $next)
     {
-        if (! $request->user()) {
-            throw new NovaAuthenticationException('Unauthenticated.');
-        }
-        
         $tool = collect(Nova::registeredTools())->first([$this, 'matchesTool']);
 
         return optional($tool)->authorize($request) ? $next($request) : abort(403);
